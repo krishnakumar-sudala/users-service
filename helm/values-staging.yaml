@@ -1,0 +1,10 @@
+env:
+  NODE_ENV: "staging"
+  POSTGRES_HOST: "postgres-staging"
+  POSTGRES_DB: "usersdb"
+  POSTGRES_USER: "usersadmin"
+
+secretEnv:
+  POSTGRES_PASSWORD: "staging-password"
+  JWT_SECRET: "staging-jwt"
+  JWT_REFRESH_SECRET: "staging-refresh"

@@ -1,0 +1,10 @@
+env:
+  NODE_ENV: "production"
+  POSTGRES_HOST: "postgres-prod"
+  POSTGRES_DB: "usersdb"
+  POSTGRES_USER: "usersadmin"
+
+secretEnv:
+  POSTGRES_PASSWORD: "prod-password"
+  JWT_SECRET: "prod-jwt"
+  JWT_REFRESH_SECRET: "prod-refresh"

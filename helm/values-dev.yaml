@@ -1,0 +1,10 @@
+env:
+  NODE_ENV: "development"
+  POSTGRES_HOST: "postgres-dev"
+  POSTGRES_DB: "usersdb"
+  POSTGRES_USER: "usersadmin"
+
+secretEnv:
+  POSTGRES_PASSWORD: "dev-password"
+  JWT_SECRET: "dev-jwt"
+  JWT_REFRESH_SECRET: "dev-refresh"

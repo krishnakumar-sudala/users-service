@@ -1,0 +1,43 @@
+name: Build and Push to GHCR
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set image tag
+        id: vars
+        run: echo "TAG=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Login to GHCR
+        run: |
+          echo "${{ secrets.GHCR_TOKEN }}" | \
+          docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build image
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/users-service:${TAG} .
+
+      - name: Push image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/users-service:${TAG}
+
+      - name: Update Helm values.yaml
+        run: |
+          sed -i "s|repository:.*|repository: ghcr.io/${{ github.repository_owner }}/users-service|" helm/values.yaml
+          sed -i "s/tag: .*/tag: \"${TAG}\"/" helm/values.yaml
+
+      - name: Commit updated values.yaml
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add helm/values.yaml
+          git commit -m "Update image tag to ${TAG}"
+          git push
