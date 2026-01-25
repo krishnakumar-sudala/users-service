@@ -30,8 +30,8 @@ jobs:
 
       - name: Update Helm values.yaml
         run: |
-          sed -i "s|repository:.*|repository: ghcr.io/${{ github.repository_owner }}/users-service|" helm/values.yaml
-          sed -i "s/tag: .*/tag: \"${TAG}\"/" helm/values.yaml
+          sed -i "s|repository:.*|repository: ghcr.io/${{ github.repository_owner }}/users-service|" helm/users-service/values-dev.yaml
+          sed -i "s/tag: .*/tag: \"${TAG}\"/" helm/users-service/values-dev.yaml
 
       - name: Commit updated values.yaml
         run: |
