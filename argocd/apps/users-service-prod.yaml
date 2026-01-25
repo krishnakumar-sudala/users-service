@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: users-service-prod
-  namespace: users-service-prod
+  namespace: argocd
 spec:
   project: default
   source:
@@ -14,7 +14,7 @@ spec:
         - values-prod.yaml
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: users-service-prod
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
