@@ -1,3 +1,10 @@
+image:
+  repository: ghcr.io/krishnakumar-sudala/users-service
+  tag: "dev-latest"   # Your CI pipeline will overwrite this with the real tag
+
+service:
+  port: 3000
+
 env:
   NODE_ENV: "staging"
   POSTGRES_HOST: "postgres-staging"
