@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/your-username/users-service
-  tag: "latest"
+  tag: "dev-latest"
 
 service:
   port: 3000

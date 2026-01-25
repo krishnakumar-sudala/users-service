@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: users-service-root
+  namespace: argocd    # Namespace where ArgoCD is installed
+spec:
+  project: default
+
+  source:
+    repoURL: 'https://github.com/krishnakumar-sudala/node-ocp-helm-argocd.git'
+    targetRevision: main
+    path: argocd   # Path to the directory containing the Application manifest root-app.yaml
+
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: argocd   # Namespace where ArgoCD is installed
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

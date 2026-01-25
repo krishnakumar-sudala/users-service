@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: users-service-prod
+  namespace: users-service-prod
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/krishnakumar-sudala/users-service.git'
+    path: helm/users-service
+    targetRevision: main
+    helm:
+      valuesFiles:
+        - values-prod.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: users-service-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
