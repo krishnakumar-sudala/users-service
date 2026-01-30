@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/krishnakumar-sudala/users-service
-  tag: "1769783585"
+  tag: "1769784162"
 
 service:
   port: 3000
