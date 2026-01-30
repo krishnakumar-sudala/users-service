@@ -6,10 +6,12 @@ WORKDIR /app
 RUN apk add --no-cache python3 make g++ libc6-compat
 
 COPY package*.json ./
-RUN npm ci --only=production
+#RUN npm ci --only=production
+
+# Force bcrypt to build from source 
+RUN npm install --production --build-from-source=bcrypt
 
 COPY . .
-RUN npm rebuild bcrypt --build-from-source
 
 
 EXPOSE 3000
