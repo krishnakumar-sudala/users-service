@@ -22,7 +22,7 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/users-service:${TAG} .
+          docker build --no-cache -t ghcr.io/${{ github.repository_owner }}/users-service:${TAG} .
 
       - name: Push image
         run: |
