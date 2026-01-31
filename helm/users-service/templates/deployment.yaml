@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: users-service
+  labels:
+    app: users-service
 spec:
   replicas: 1
   selector:
@@ -14,19 +16,6 @@ spec:
     spec:
       containers:
         - name: users-service
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
-            - containerPort: {{ .Values.service.port }}
-          env:
-            {{- range $key, $value := .Values.env }}
-            - name: {{ $key }}
-              value: "{{ $value }}"
-            {{- end }}
-
-            {{- range $key, $value := .Values.secretEnv }}
-            - name: {{ $key }}
-              valueFrom:
-                secretKeyRef:
-                  name: users-service-secret
-                  key: {{ $key }}
-            {{- end }}
+            - containerPort: 3000

@@ -1,0 +1,15 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: users-service
+  labels:
+    app: users-service
+spec:
+  host: {{ .Values.route.host }}
+  to:
+    kind: Service
+    name: users-service
+  port:
+    targetPort: http
+  tls:
+    termination: edge
