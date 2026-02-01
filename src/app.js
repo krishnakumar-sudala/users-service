@@ -3,7 +3,10 @@ const authRoutes = require('./modules/auth/routes');
 const userRoutes = require('./modules/users/routes');
 
 const app = express();
-app.use(express.json());
+//app.use(express.json());
+// Apply JSON parsing ONLY to routes that expect JSON 
+app.use('/auth', express.json()); 
+app.use('/users', express.json());
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
