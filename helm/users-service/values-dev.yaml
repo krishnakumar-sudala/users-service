@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/krishnakumar-sudala/users-service
-  tag: "1769869472"
+  tag: "1769869935"
 
 route:
   host: users-service-dev.apps-crc.testing
