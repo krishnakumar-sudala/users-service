@@ -10,12 +10,13 @@ service:
 
 env:
   NODE_ENV: "development"
-  POSTGRES_HOST: "postgres-dev"
-  POSTGRES_DB: "usersdb"
-  POSTGRES_USER: "usersadmin"
-
+  POSTGRES_HOST: "platform-postgres.shared-services.svc.cluster.local"
+  POSTGRES_DB: "platform"
+  POSTGRES_USER: "postgres"
+  PGSCHEMA: "users_service"
+  
 secretEnv:
-  POSTGRES_PASSWORD: "dev-password"
+  POSTGRES_PASSWORD: "postgres"
   JWT_SECRET: "dev-jwt"
   JWT_REFRESH_SECRET: "dev-refresh"
 

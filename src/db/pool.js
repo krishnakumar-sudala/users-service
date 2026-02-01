@@ -10,6 +10,7 @@ const pool = new Pool({
   max: 10,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
+  search_path: config.db.schema || process.env.PGSCHEMA   //this is to prefix the schema name before the table names like schema.table_name
 });
 
 module.exports = {
