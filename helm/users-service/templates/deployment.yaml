@@ -27,8 +27,6 @@ spec:
 
             {{- range $key, $value := .Values.secretEnv }}
             - name: {{ $key }}
-              valueFrom:
-                secretKeyRef:
-                  name: users-service-secret
-                  key: {{ $key }}
+              value: "{{ $value }}"
             {{- end }}
+
