@@ -10,7 +10,7 @@ service:
 
 env:
   NODE_ENV: "development"
-  POSTGRES_HOST: "platform-postgres.shared-services.svc.cluster.local"
+  POSTGRES_HOST: "postgresql.shared-services.svc.cluster.local"
   POSTGRES_DB: "platform"
   POSTGRES_USER: "postgres"
   PGSCHEMA: "users_service"
