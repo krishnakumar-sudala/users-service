@@ -10,7 +10,10 @@ const pool = new Pool({
   max: 10,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
-  search_path: config.db.schema || process.env.PGSCHEMA   //this is to prefix the schema name before the table names like schema.table_name
+  //search_path: config.db.schema || process.env.PGSCHEMA   //this is to prefix the schema name before the table names like schema.table_name
+
+  // ⭐ This line forces PostgreSQL to use the correct schema 
+  options: `-c search_path=${process.env.PGSCHEMA}`
 });
 
 module.exports = {
