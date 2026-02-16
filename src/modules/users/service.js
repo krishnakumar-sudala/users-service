@@ -1,4 +1,6 @@
 const db = require('../../db/pool');
+const bcrypt = require('bcrypt');
+
 
 exports.getMe = async (userId) => {
   const result = await db.query(
