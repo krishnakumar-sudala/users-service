@@ -5,5 +5,9 @@ module.exports = {
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
     schema: process.env.PGSCHEMA  //this is to switch between different schemas if needed
+  },
+  jwt: {
+    secret: process.env.JWT_SECRET,
+    refreshSecret: process.env.JWT_REFRESH_SECRET
   }
 };
