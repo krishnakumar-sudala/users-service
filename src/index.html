@@ -33,7 +33,7 @@
   <input type="text" id="updateId" placeholder="User ID" required>
   <input type="email" id="updateEmail" placeholder="New Email">
   <input type="password" id="updatePassword" placeholder="New Password">
-  <button type="submit">Update</button>
+  <button type="button" id="updateBtn">Update</button>
 </form>
 
 <!-- DELETE USER -->
@@ -97,7 +97,7 @@ document.getElementById('getUsersBtn').addEventListener('click', async () => {
 
 // UPDATE USER
 
-document.getElementById('updateForm').addEventListener('submit', async (e) => {
+/*document.getElementById('updateBtn').addEventListener('click', async (e) => {
   e.preventDefault();
   const id = updateId.value;
   const email = updateEmail.value;
@@ -115,6 +115,47 @@ document.getElementById('updateForm').addEventListener('submit', async (e) => {
   });
 
   output.textContent = JSON.stringify(await res.json(), null, 2);
+});*/
+
+document.getElementById('updateBtn').addEventListener('click', async (e) => {
+  e.preventDefault();
+
+  const id = updateId.value.trim();
+  const email = updateEmail.value.trim();
+  const password = updatePassword.value.trim();
+
+  const token = localStorage.getItem("token");
+
+  // Build payload dynamically
+  const payload = {};
+  if (email) payload.email = email;
+  if (password) payload.password = password;
+
+  // If nothing to update, show message
+  if (Object.keys(payload).length === 0) {
+    output.style.color = "red";
+    output.textContent = "Please enter at least one field to update.";
+    return;
+  }
+
+  const res = await fetch(`${API}/users/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(payload)
+  });
+
+  const data = await res.json();
+
+  if (res.ok) {
+    output.style.color = "green";
+    output.textContent = "User updated successfully:\n" + JSON.stringify(data, null, 2);
+  } else {
+    output.style.color = "red";
+    output.textContent = "Update failed:\n" + JSON.stringify(data, null, 2);
+  }
 });
 
 // DELETE USER
@@ -132,7 +173,5 @@ document.getElementById('deleteForm').addEventListener('submit', async (e) => {
   output.textContent = JSON.stringify(await res.json(), null, 2);
 });
 </script>
-
-  </script>
 </body>
 </html>

@@ -8,7 +8,7 @@ const app = express();
 
 // ⭐ Enable CORS BEFORE any routes 
 app.use(cors({ origin: 'http://localhost:8084', // or '*' during development 
-methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'], 
 allowedHeaders: ['Content-Type', 'Authorization'] })); 
 
 // Handle preflight requests explicitly (optional but recommended) 
