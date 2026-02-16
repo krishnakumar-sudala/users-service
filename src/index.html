@@ -106,7 +106,7 @@ document.getElementById('updateForm').addEventListener('submit', async (e) => {
   const token = localStorage.getItem("token");
 
   const res = await fetch(`${API}/users/${id}`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`

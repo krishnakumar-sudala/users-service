@@ -16,6 +16,13 @@ exports.getAllUsers = async () => {
 };
 
 exports.updateUser = async (id, data) => {
+
+  if (data.password) { 
+    const saltRounds = 10; 
+    data.password_hash = await bcrypt.hash(data.password, saltRounds); 
+    delete data.password; 
+  }
+
   const fields = [];
   const values = [];
   let index = 1;
