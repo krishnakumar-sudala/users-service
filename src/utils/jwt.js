@@ -6,7 +6,7 @@ function signAccessToken(payload) {
 }
 
 function signRefreshToken(payload) {
-  return jwt.sign(payload, jwtConfigjwt.refreshSecret, { expiresIn: '7d' });
+  return jwt.sign(payload, jwtConfig.refreshSecret, { expiresIn: '7d' });
 }
 
 function verifyAccessToken(token) {
